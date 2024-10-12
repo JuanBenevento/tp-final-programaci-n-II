@@ -14,7 +14,6 @@ public class BrandDTO {
     public BrandDTO (Brands brand){
         this.idBrand = brand.getIdBrand();
         this.name = brand.getName();
-        this.name = brand.getName();
     }
 
     public int getIdBrand() {

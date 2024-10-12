@@ -15,4 +15,20 @@ public class TypeVehicleDTO {
         this.idType = type.getIdType();
         this.description = type.getDescription();
     }
+
+    public int getIdType() {
+        return idType;
+    }
+
+    public void setIdType(int idType) {
+        this.idType = idType;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
 }
