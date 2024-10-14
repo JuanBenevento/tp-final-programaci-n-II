@@ -13,7 +13,7 @@ public class Models {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int idModel;
-
+    private String descripcion;
     @ManyToOne
     @JoinColumn(name = "id_brand")
     private Brands brand;
