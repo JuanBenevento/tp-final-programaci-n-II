@@ -13,14 +13,15 @@ import java.util.Date;
 import java.util.List;
 
 @RestController
-@RequestMapping("/vehicles/brands")
+@RequestMapping("/brands")
 public class BrandsController {
     private final BrandsRepository brandsRepository;
     @Autowired
-    BrandsService brandsService;
-    public BrandsController(BrandsRepository brandsRepository) {
+    private BrandsService brandsService;
 
+    public BrandsController(BrandsRepository brandsRepository) {
         this.brandsRepository = brandsRepository;
+
     }
 
 
@@ -30,9 +31,9 @@ public class BrandsController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Object> getBrandById(@PathVariable Long id) {
+    public ResponseEntity<Object> getBrandById(@PathVariable int id) {
         try {
-            BrandDTO brand =  brandsRepository.getBrandById(id);
+            BrandDTO brand =  brandsRepository.getBrandByIdBrand(id);
             if (brand != null) {
                 return new ResponseEntity<>(brand, HttpStatus.OK);
             } else {
@@ -60,7 +61,7 @@ public class BrandsController {
 
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Object> deleteBrand(@PathVariable Long id){
+    public ResponseEntity<Object> deleteBrand(@PathVariable int id){
         try{
             brandsService.deleteBrand(id);
         }catch (Exception e){

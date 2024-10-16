@@ -17,7 +17,7 @@ public class SuppliersController {
 
     private final SuppliersRepository suppliersRepository;
     @Autowired
-    SuppliersService suppliersService;
+    private SuppliersService suppliersService;
     public SuppliersController(SuppliersRepository suppliersRepository) {
 
         this.suppliersRepository = suppliersRepository;
@@ -30,7 +30,7 @@ public class SuppliersController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Object> getSupplierById(@PathVariable Long id) {
+    public ResponseEntity<Object> getSupplierById(@PathVariable int id) {
         try {
             SupplierDTO supplier =  suppliersRepository.getSupplierById(id);
             if (supplier != null) {
@@ -61,7 +61,7 @@ public class SuppliersController {
 
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Object> deleteSupplier(@PathVariable Long id){
+    public ResponseEntity<Object> deleteSupplier(@PathVariable int id){
         try{
             suppliersService.deleteSupplier(id);
         }catch (Exception e){

@@ -10,19 +10,20 @@ import TpFinalProgramacion.Services.ModelsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-
+@Service
 public class ModelsServiceImpl implements ModelsService {
    @Autowired
-    ModelsRepository modelsRepository;
+    private ModelsRepository modelsRepository;
 
     List<ModelDTO> findAll(){
         return modelsRepository.findAll().stream().map(model -> new ModelDTO(model)).collect(Collectors.toList());
     };
-    ModelDTO getModelById(Long id){
+    ModelDTO getModelByidModel(int id){
         return modelsRepository.findById(id).map(ModelDTO::new).orElse(null);
     };
 
@@ -47,7 +48,7 @@ public class ModelsServiceImpl implements ModelsService {
         return new ResponseEntity<>("Model created successfully", HttpStatus.CREATED);    }
 
     @Override
-    public ResponseEntity<Object> deleteModel(Long id) {
+    public ResponseEntity<Object> deleteModel(int id) {
         try {
             Models modelFind = modelsRepository.findById(id).orElse(null);
             if (modelFind == null) {

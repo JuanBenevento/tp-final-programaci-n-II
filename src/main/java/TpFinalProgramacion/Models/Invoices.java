@@ -19,7 +19,7 @@ public class Invoices {
     private int idInvoice;
 
     @ManyToOne
-    @JoinColumn(name = "is_sale")
+    @JoinColumn(name = "id_sale")
     private Sales sale;
     private Date dateInvoice;
     private Double totalAmount;

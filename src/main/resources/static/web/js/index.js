@@ -1,51 +1,36 @@
-var app = new Vue({
-    el:"#app",
-    data:{
-        email:"",
-        password:"",
-        firstName: "",
-        lastName: "",
-        errorToats:null,
-        errorMsg: "",
-        showSignUp: false,
-    },
-    methods:{
-        signIn: function(event){
-            event.preventDefault();
-            let config = {
-                headers: {
-                    'content-type': 'application/x-www-form-urlencoded'
+ angular.module('app', [])
+        .controller('AppController', function($scope) {
+            $scope.showWelcome = true;
+
+            $scope.enter = function() {
+                // Cambia el estado de showWelcome para mostrar el menú
+                $scope.showWelcome = false;
+            };
+
+            $scope.back = function() {
+                window.history.back();
+            };
+
+            $scope.navigateTo = function(category) {
+                // Redirige a las diferentes páginas según la categoría
+                switch (category) {
+                    case 'ventas':
+                        window.location.href = 'ventas.html';
+                        break;
+                    case 'invoices':
+                        window.location.href = 'invoices.html';
+                        break;
+                    case 'marcas':
+                        window.location.href = 'marcas.html';
+                        break;
+                    case 'vehiculos':
+                        window.location.href = 'vehiculos.html';
+                        break;
+                    case 'proveedores':
+                        window.location.href = 'proveedores.html';
+                        break;
+                    default:
+                        console.error("Categoría no reconocida");
                 }
-            }
-            axios.post('/api/login',`email=${this.email}&password=${this.password}`,config)
-                .then(response => window.location.href="/web/accounts.html")
-                .catch(() =>{
-                    this.errorMsg = "Sign in failed, check the information"
-                    this.errorToats.show();
-                })
-        },
-        signUp: function(event){
-            event.preventDefault();
-            let config = {
-                headers: {
-                    'content-type': 'application/x-www-form-urlencoded'
-                }
-            }
-            axios.post('/users',`firstName=${this.firstName}&lastName=${this.lastName}&email=${this.email}&password=${this.password}`,config)
-                .then(() => { this.signIn(event) })
-                .catch(() =>{
-                    this.errorMsg = "Sign up failed, check the information"
-                    this.errorToats.show();
-                })
-        },
-        showSignUpToogle: function(){
-            this.showSignUp = !this.showSignUp;
-        },
-        formatDate: function(date){
-            return new Date(date).toLocaleDateString('en-gb');
-        }
-    },
-    mounted: function(){
-        this.errorToats = new bootstrap.Toast(document.getElementById('danger-toast'));
-    }
-})
+            };
+        });

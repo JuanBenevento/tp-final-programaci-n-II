@@ -24,7 +24,7 @@ import java.util.List;
 public class InvoicesController {
     private final InvoicesRepository invoicesRepository;
     @Autowired
-    InvoicesService invoicesService;
+    private InvoicesService invoicesService;
     public InvoicesController(InvoicesRepository invoicesRepository) {
 
         this.invoicesRepository = invoicesRepository;
@@ -37,9 +37,9 @@ public class InvoicesController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Object> getInvoiceById(@PathVariable Long id) {
+    public ResponseEntity<Object> getInvoiceById(@PathVariable int id) {
         try {
-            InvoiceDTO invoice =  invoicesRepository.getInvoiceById(id);
+            InvoiceDTO invoice =  invoicesRepository.getInvoiceByidInvoice(id);
             if (invoice != null) {
                 return new ResponseEntity<>(invoice, HttpStatus.OK);
             } else {
@@ -69,7 +69,7 @@ public class InvoicesController {
 
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Object> deteleInvoice(@PathVariable Long id){
+    public ResponseEntity<Object> deteleInvoice(@PathVariable int id){
         try{
             invoicesService.deleteInvoice(id);
         }catch (Exception e){

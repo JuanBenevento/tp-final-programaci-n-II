@@ -15,7 +15,7 @@ import lombok.Setter;
 public class TypesVehicles {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idType;
+    private int id;
 
     private String description;
 

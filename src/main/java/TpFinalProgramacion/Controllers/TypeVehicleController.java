@@ -12,11 +12,14 @@ import org.springframework.web.bind.annotation.*;
 import java.util.List;
 
 @RestController
-@RequestMapping("/vehicles/types")
+@RequestMapping("/typesVehicles")
 public class TypeVehicleController {
+
     private final TypeVehiclesRepository typeVehiclesRepository;
+
     @Autowired
-    TypeVehiclesService typeVehiclesService;
+    private TypeVehiclesService typeVehiclesService;
+
     public TypeVehicleController(TypeVehiclesRepository typeVehiclesRepository) {
 
         this.typeVehiclesRepository = typeVehiclesRepository;
@@ -24,14 +27,14 @@ public class TypeVehicleController {
 
 
     @GetMapping("")
-    public List<TypesVehicles> getAllTypes() {
-        return typeVehiclesRepository.findAll();
+    public List<TypeVehicleDTO> getAllTypes() {
+        return typeVehiclesService.findAll();
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Object> getTypeById(@PathVariable Long id) {
+    public ResponseEntity<Object> getTypeById(@PathVariable int id) {
         try {
-            TypeVehicleDTO typeVehicle =  typeVehiclesRepository.getTypeById(id);
+            TypeVehicleDTO typeVehicle =  typeVehiclesService.getTypeById(id);
             if (typeVehicle != null) {
                 return new ResponseEntity<>(typeVehicle, HttpStatus.OK);
             } else {
@@ -47,7 +50,7 @@ public class TypeVehicleController {
     public ResponseEntity<Object> saveTypeVehicle(
             @RequestParam String description){
         try{
-            typeVehiclesRepository.createTypeVehicle(description);
+            typeVehiclesService.createTypeVehicle(description);
 
         }catch(Exception e){
             System.out.println(e.getMessage());
@@ -58,9 +61,9 @@ public class TypeVehicleController {
 
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Object> deteleType(@PathVariable Long id){
+    public ResponseEntity<Object> deteleType(@PathVariable int id){
         try{
-            typeVehiclesRepository.deleteType(id);
+            typeVehiclesService.deleteType(id);
         }catch (Exception e){
             System.out.println(e.getMessage());
             return new ResponseEntity<>("Error deleting type of vehicle", HttpStatus.INTERNAL_SERVER_ERROR);

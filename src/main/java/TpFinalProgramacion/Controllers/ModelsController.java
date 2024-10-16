@@ -19,7 +19,7 @@ import java.util.List;
 public class ModelsController {
     private final ModelsRepository modelsRepository;
     @Autowired
-    ModelsService modelsService;
+    private ModelsService modelsService;
     public ModelsController(ModelsRepository modelsRepository) {
 
         this.modelsRepository = modelsRepository;
@@ -32,9 +32,9 @@ public class ModelsController {
     }
 
     @GetMapping("/{id}")
-    public ResponseEntity<Object> getModelById(@PathVariable Long id) {
+    public ResponseEntity<Object> getModelByidModel(@PathVariable int id) {
         try {
-            ModelDTO model =  modelsRepository.getModelById(id);
+            ModelDTO model =  modelsRepository.getModelByidModel(id);
             if (model != null) {
                 return new ResponseEntity<>(model, HttpStatus.OK);
             } else {
@@ -61,7 +61,7 @@ public class ModelsController {
 
 
     @DeleteMapping("/{id}")
-    public ResponseEntity<Object> deleteModel(@PathVariable Long id){
+    public ResponseEntity<Object> deleteModel(@PathVariable int id){
         try{
             modelsService.deleteModel(id);
         }catch (Exception e){

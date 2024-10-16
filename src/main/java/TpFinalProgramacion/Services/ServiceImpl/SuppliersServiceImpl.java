@@ -7,14 +7,15 @@ import TpFinalProgramacion.Services.SuppliersService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-
+@Service
 public class SuppliersServiceImpl implements SuppliersService {
     @Autowired
-    SuppliersRepository suppliersRepository;
+    private SuppliersRepository suppliersRepository;
     @Override
     public List<SupplierDTO> findAll() {
         return suppliersRepository.findAll().stream().map(supplier -> new SupplierDTO(supplier)).collect(Collectors.toList());
@@ -22,7 +23,7 @@ public class SuppliersServiceImpl implements SuppliersService {
     }
 
     @Override
-    public SupplierDTO getSupplierById(Long id) {
+    public SupplierDTO getSupplierById(int id) {
         return suppliersRepository.findById(id).map(SupplierDTO::new).orElse(null);
     }
 
@@ -48,7 +49,7 @@ public class SuppliersServiceImpl implements SuppliersService {
         return new ResponseEntity<>("Supplier created successfully", HttpStatus.CREATED);    }
 
     @Override
-    public ResponseEntity<Object> deleteSupplier(Long id) {
+    public ResponseEntity<Object> deleteSupplier(int id) {
         try {
             Suppliers supplierFind = suppliersRepository.findById(id).orElse(null);
             if (supplierFind == null) {

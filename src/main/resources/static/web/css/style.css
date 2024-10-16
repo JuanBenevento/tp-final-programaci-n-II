@@ -54,7 +54,7 @@ background: linear-gradient(90deg, rgba(228,219,219,1) 0%, rgba(232,28,11,1) 35%
 }
 
 .welcome{
-    background: antiquewhite;
+    background: white;
 }
 
 .welcome-logo{
@@ -69,4 +69,31 @@ background: linear-gradient(90deg, rgba(228,219,219,1) 0%, rgba(232,28,11,1) 35%
 
 .index-container{
     margin-top: 10%;
+}
+
+h1 {
+    color: #4CAF50;
+}
+
+.category-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: 30px;
+}
+
+button {
+    padding: 10px 20px;
+    margin: 10px;
+    font-size: 16px;
+    cursor: pointer;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+button:hover {
+    background-color: #45a049;
 }

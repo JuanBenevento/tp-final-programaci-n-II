@@ -3,25 +3,25 @@ package TpFinalProgramacion.DTOs;
 import TpFinalProgramacion.Models.TypesVehicles;
 
 public class TypeVehicleDTO {
-    private int idType;
+    private int id;
     private String description;
 
     public TypeVehicleDTO(int idType, String description) {
-        this.idType = idType;
+        this.id = idType;
         this.description = description;
     }
 
     public  TypeVehicleDTO(TypesVehicles type){
-        this.idType = type.getIdType();
+        this.id = type.getId();
         this.description = type.getDescription();
     }
 
-    public int getIdType() {
-        return idType;
+    public int getId() {
+        return id;
     }
 
-    public void setIdType(int idType) {
-        this.idType = idType;
+    public void setId(int idType) {
+        this.id = idType;
     }
 
     public String getDescription() {

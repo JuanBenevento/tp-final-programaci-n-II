@@ -6,6 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 @RepositoryRestResource
-public interface BrandsRepository  extends JpaRepository<Brands, Long> {
-    BrandDTO getBrandById(Long id);
+public interface BrandsRepository  extends JpaRepository<Brands, Integer> {
+    BrandDTO getBrandByIdBrand(int id);
 }

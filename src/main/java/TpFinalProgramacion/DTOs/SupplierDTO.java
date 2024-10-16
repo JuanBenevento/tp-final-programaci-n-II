@@ -16,7 +16,7 @@ public class SupplierDTO {
     }
 
     public SupplierDTO(Suppliers sup){
-        this.idSupplier  = sup.getIdSupplier();
+        this.idSupplier  = sup.getId();
         this.name = sup.getName();
         this.email = sup.getEmail();
         this.phoneNumber = sup.getPhoneNumber();

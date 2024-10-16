@@ -7,14 +7,15 @@ import TpFinalProgramacion.Services.BrandsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Collectors;
-
+@Service
 public class BrandsServiceImpl implements BrandsService {
     @Autowired
-    BrandsRepository brandRepository;
+    private BrandsRepository brandRepository;
     @Override
     public List<BrandDTO> findAll() {
         return brandRepository.findAll().stream().map(brand -> new BrandDTO(brand)).collect(Collectors.toList());
@@ -22,7 +23,7 @@ public class BrandsServiceImpl implements BrandsService {
     }
 
     @Override
-    public BrandDTO getBrandById(Long id) {
+    public BrandDTO getBrandByIdBrand(int id) {
         return brandRepository.findById(id).map(BrandDTO::new).orElse(null);
     }
 
@@ -46,7 +47,7 @@ public class BrandsServiceImpl implements BrandsService {
         return new ResponseEntity<>("Brand created successfully", HttpStatus.CREATED);    }
 
     @Override
-    public ResponseEntity<Object> deleteBrand(Long id) {
+    public ResponseEntity<Object> deleteBrand(int id) {
         try {
             Brands brandFind = brandRepository.findById(id).orElse(null);
             if (brandFind == null) {

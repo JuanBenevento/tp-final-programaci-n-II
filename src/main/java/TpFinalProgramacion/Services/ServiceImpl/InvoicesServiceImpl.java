@@ -10,15 +10,16 @@ import TpFinalProgramacion.Services.InvoicesService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
 import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
-
+@Service
 public class InvoicesServiceImpl implements InvoicesService {
     @Autowired
-    InvoicesRepository invoicesRepository;
+    private InvoicesRepository invoicesRepository;
     @Override
     public List<InvoiceDTO> findAll() {
         return invoicesRepository.findAll().stream().map(invoice -> new InvoiceDTO(invoice)).collect(Collectors.toList());
@@ -26,7 +27,7 @@ public class InvoicesServiceImpl implements InvoicesService {
     }
 
     @Override
-    public InvoiceDTO getInvoiceById(Long id) {
+    public InvoiceDTO getInvoiceByidInvoice(int id) {
         return invoicesRepository.findById(id).map(InvoiceDTO::new).orElse(null);
     }
 
@@ -52,7 +53,7 @@ public class InvoicesServiceImpl implements InvoicesService {
         return new ResponseEntity<>("Supplier created successfully", HttpStatus.CREATED);    }
 
     @Override
-    public ResponseEntity<Object> deleteInvoice(Long id) {
+    public ResponseEntity<Object> deleteInvoice(int id) {
         try {
             Invoices invoiceFind = invoicesRepository.findById(id).orElse(null);
             if (invoiceFind == null) {

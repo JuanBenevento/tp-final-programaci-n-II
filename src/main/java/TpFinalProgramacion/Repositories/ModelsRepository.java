@@ -6,6 +6,6 @@ import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.rest.core.annotation.RepositoryRestResource;
 
 @RepositoryRestResource
-public interface ModelsRepository  extends JpaRepository<Models, Long> {
-    ModelDTO getModelById(Long id);
+public interface ModelsRepository  extends JpaRepository<Models, Integer> {
+    ModelDTO getModelByidModel(int id);
 }

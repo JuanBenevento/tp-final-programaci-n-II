@@ -15,7 +15,7 @@ import javax.persistence.*;
 public class Vehicles {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int idVehicle;
+    private int id;
     @ManyToOne
     @JoinColumn(name = "id_type")
     private TypesVehicles typeVehicle;
