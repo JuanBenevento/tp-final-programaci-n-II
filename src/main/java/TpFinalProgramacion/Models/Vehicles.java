@@ -29,7 +29,7 @@ public class Vehicles {
     @ManyToOne
     @JoinColumn(name = "id_supplier")
     private Suppliers supplier;
-    private int stock;
+    private Integer stock;
 
 
 }
